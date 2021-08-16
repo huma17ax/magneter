@@ -7,6 +7,10 @@ public class cont_player : MonoBehaviour
     public Rigidbody2D rbody;
     public float SPEED = 1.0f;
     public float MAX_SPEED = 10.0f;
+    public float maxAngle = 45;
+    public Vector2 nomalVec;
+    [SerializeField] private Vector2 maxVec;
+    [SerializeField] private Vector2 minVec;
 
     void Start()
     {
