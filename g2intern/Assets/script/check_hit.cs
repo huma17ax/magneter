@@ -34,7 +34,7 @@ public class check_hit : MonoBehaviour
 
     Vector2 check_position(Vector3 pos_this, Vector3 pos_hit, Vector3 scale_hit)
     {
-        if(Mathf.Abs(pos_this.x - pos_hit.x) < scale_hit.x / 2.0f)
+        if(Mathf.Abs(pos_this.y - pos_hit.y) > scale_hit.y / 2.0f)
         {
             if(pos_this.y - pos_hit.y > 0)
             {
@@ -56,5 +56,9 @@ public class check_hit : MonoBehaviour
                 return new Vector2(-0.5f, 0.5f);
             }
         }
+        //else
+        //{
+        //    return new Vector2(0.0f, 0.0f);
+        //}
     }
 }
