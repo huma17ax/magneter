@@ -24,7 +24,7 @@ public class check_hit : MonoBehaviour
         if (other.gameObject.CompareTag("S_pole"))
         {          
             Vector2 vec_Correct = check_position(this.transform.position, other.transform.position, other.transform.localScale);
-            script_cont_player.do_conect(offset_anchorY, b_UPorUNDER, vec_Correct, other.gameObject);
+            script_cont_player.do_conect(offset_anchorY, b_UPorUNDER, vec_Correct, other.gameObject, other);
             if(other.name == "goal_magnet")
             {
                 other.gameObject.GetComponent<goal_manager>().do_goal();

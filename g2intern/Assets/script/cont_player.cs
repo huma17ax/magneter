@@ -9,7 +9,7 @@ public class cont_player : MonoBehaviour
     public float MAX_SPEED = 10.0f;
     public float FORCE_ROTA = 1.0f;
     public float POWER_REPULSION = 10.0f;
-    public bool b_conect = false;
+    public Collider2D b_conect = null;
     public HingeJoint2D hing2d;
     public GameObject[] obj_checkCircle = new GameObject[2];
     bool b_stand = true;
@@ -32,7 +32,7 @@ public class cont_player : MonoBehaviour
             conect_move();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (b_conect && b_conect.tag == "N_pole")
         {
             do_repulsion();
         }
@@ -80,7 +80,7 @@ public class cont_player : MonoBehaviour
         rbody.AddForce((new Vector2(vecX, 0.0f) + vec_correct) * SPEED * Time.deltaTime);
     }
 
-    public void do_conect(float PosAnchorY, bool b_Stand, Vector2 v_correct, GameObject obj_parent)
+    public void do_conect(float PosAnchorY, bool b_Stand, Vector2 v_correct, GameObject obj_parent, Collider2D connected_block)
     {
         if (!b_conect)
         {
@@ -89,7 +89,7 @@ public class cont_player : MonoBehaviour
             this.transform.parent = emptyObject.transform;
             hing2d.enabled = true;
             hing2d.anchor = new Vector2(0.0f, PosAnchorY);
-            b_conect = true;
+            b_conect = connected_block;
             vec_correct = v_correct;
             b_stand = !b_Stand;
         }
@@ -108,7 +108,7 @@ public class cont_player : MonoBehaviour
             {
                 vec_repulsion *= -1.0f;
             }
-            b_conect = false;
+            b_conect = null;
             rbody.AddForce(vec_repulsion * POWER_REPULSION);
         }
     }
