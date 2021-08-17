@@ -68,16 +68,16 @@ public class cont_player : MonoBehaviour
         {
             vecX += 1.0f;
         }
-        float vecY = 0.0f;
-        if (Input.GetKey("s"))
-        {
-            vecY += -1.0f;
-        }
-        if (Input.GetKey("w"))
-        {
-            vecY += 1.0f;
-        }
-        rbody.AddForce((new Vector2(vecX, vecY) + vec_correct) * SPEED * Time.deltaTime);
+        //float vecY = 0.0f;
+        //if (Input.GetKey("s"))
+        //{
+        //    vecY += -1.0f;
+        //}
+        //if (Input.GetKey("w"))
+        //{
+        //    vecY += 1.0f;
+        //}
+        rbody.AddForce((new Vector2(vecX, 0.0f) + vec_correct) * SPEED * Time.deltaTime);
     }
 
     public void do_conect(float PosAnchorY, bool b_Stand, Vector2 v_correct, GameObject obj_parent)
