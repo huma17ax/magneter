@@ -13,7 +13,7 @@ public class cont_player : MonoBehaviour
     public HingeJoint2D hing2d;
     public GameObject[] obj_checkCircle = new GameObject[2];
     bool b_stand = true;
-    bool b_OnBox = false;
+    Vector2 vec_correct = new Vector2(0.0f, 0.0f);
 
     void Start()
     {
@@ -69,10 +69,6 @@ public class cont_player : MonoBehaviour
             vecX += 1.0f;
         }
         float vecY = 0.0f;
-        if (b_OnBox)
-        {
-            vecY += 1.0f;
-        }
         if (Input.GetKey("s"))
         {
             vecY += -1.0f;
@@ -81,10 +77,10 @@ public class cont_player : MonoBehaviour
         {
             vecY += 1.0f;
         }
-        rbody.AddForce(new Vector2(vecX, vecY) * SPEED * Time.deltaTime);
+        rbody.AddForce((new Vector2(vecX, vecY) + vec_correct) * SPEED * Time.deltaTime);
     }
 
-    public void do_conect(float PosAnchorY, bool b_Stand, bool b_On, GameObject obj_parent)
+    public void do_conect(float PosAnchorY, bool b_Stand, Vector2 v_correct, GameObject obj_parent)
     {
         if (!b_conect)
         {
@@ -94,7 +90,7 @@ public class cont_player : MonoBehaviour
             hing2d.enabled = true;
             hing2d.anchor = new Vector2(0.0f, PosAnchorY);
             b_conect = true;
-            b_OnBox = b_On;
+            vec_correct = v_correct;
             b_stand = !b_Stand;
         }
     }

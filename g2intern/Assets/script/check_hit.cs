@@ -23,8 +23,8 @@ public class check_hit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("S_pole"))
         {          
-            bool b_onBox = (check_position(this.transform.position, other.transform.position, other.transform.localScale) == 0);
-            script_cont_player.do_conect(offset_anchorY, b_UPorUNDER, b_onBox, other.gameObject);
+            Vector2 vec_Correct = check_position(this.transform.position, other.transform.position, other.transform.localScale);
+            script_cont_player.do_conect(offset_anchorY, b_UPorUNDER, vec_Correct, other.gameObject);
             if(other.name == "goal_magnet")
             {
                 other.gameObject.GetComponent<goal_manager>().do_goal();
@@ -32,28 +32,28 @@ public class check_hit : MonoBehaviour
         }
     }
 
-    int check_position(Vector3 pos_this, Vector3 pos_hit, Vector3 scale_hit)
+    Vector2 check_position(Vector3 pos_this, Vector3 pos_hit, Vector3 scale_hit)
     {
         if(Mathf.Abs(pos_this.x - pos_hit.x) < scale_hit.x / 2.0f)
         {
             if(pos_this.y - pos_hit.y > 0)
             {
-                return 0;
+                return new Vector2(0.0f, 1.0f);
             }
             else
             {
-                return 1;
+                return new Vector2(0.0f, 0.0f);
             }
         }
         else
         {
             if(pos_this.x - pos_hit.x > 0)
             {
-                return 2;
+                return new Vector2(0.5f, 0.5f);
             }
             else
             {
-                return 3;
+                return new Vector2(-0.5f, 0.5f);
             }
         }
     }
