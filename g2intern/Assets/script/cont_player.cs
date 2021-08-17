@@ -71,15 +71,26 @@ public class cont_player : MonoBehaviour
         float vecY = 0.0f;
         if (b_OnBox)
         {
-            vecY = 1.0f;
+            vecY += 1.0f;
+        }
+        if (Input.GetKey("s"))
+        {
+            vecY += -1.0f;
+        }
+        if (Input.GetKey("w"))
+        {
+            vecY += 1.0f;
         }
         rbody.AddForce(new Vector2(vecX, vecY) * SPEED * Time.deltaTime);
     }
 
-    public void do_conect(float PosAnchorY, bool b_Stand, bool b_On)
+    public void do_conect(float PosAnchorY, bool b_Stand, bool b_On, GameObject obj_parent)
     {
         if (!b_conect)
         {
+            var emptyObject = new GameObject();
+            emptyObject.transform.parent = obj_parent.transform;
+            this.transform.parent = emptyObject.transform;
             hing2d.enabled = true;
             hing2d.anchor = new Vector2(0.0f, PosAnchorY);
             b_conect = true;
@@ -92,6 +103,9 @@ public class cont_player : MonoBehaviour
     {
         if (b_conect)
         {
+            GameObject obj_parent = this.gameObject.transform.parent.gameObject;
+            this.gameObject.transform.parent = null;
+            Destroy(obj_parent);
             hing2d.enabled = false;
             Vector2 vec_repulsion = (obj_checkCircle[0].transform.position - obj_checkCircle[1].transform.position).normalized;
             if (!b_stand)

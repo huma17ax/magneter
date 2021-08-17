@@ -22,10 +22,13 @@ public class check_hit : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("S_pole"))
-        {
-            //bool b_onBox = (this.transform.position.y - other.transform.position.y > 0) && (this.transform.position.x > other.transform.position.x - other.transform.localScale.x / 2) && (this.transform.position.x < other.transform.position.x + other.transform.localScale.x / 2);
+        {          
             bool b_onBox = (check_position(this.transform.position, other.transform.position, other.transform.localScale) == 0);
-            script_cont_player.do_conect(offset_anchorY, b_UPorUNDER, b_onBox);
+            script_cont_player.do_conect(offset_anchorY, b_UPorUNDER, b_onBox, other.gameObject);
+            if(other.name == "goal_magnet")
+            {
+                other.gameObject.GetComponent<goal_manager>().do_goal();
+            }
         }
     }
 
