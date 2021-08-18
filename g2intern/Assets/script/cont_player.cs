@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class cont_player : MonoBehaviour
 {
@@ -35,6 +36,11 @@ public class cont_player : MonoBehaviour
         if (b_conect && b_conect.tag == "N_pole")
         {
             do_repulsion();
+        }
+
+        // スタートに戻る
+        if (Input.GetKey("r")) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
