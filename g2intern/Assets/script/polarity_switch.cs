@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using myfunc;
 
 public class polarity_switch : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class polarity_switch : MonoBehaviour
             //sp_render.sprite = image_SandN[1];
             obj_SorN[0].SetActive(false);
             obj_SorN[1].SetActive(true);
+            stsc.find_create_obj("eff_toN", "", this.transform.position, new Vector3(0.0f, 0.0f, 0.0f), "box");
         }
         else
         {
@@ -45,6 +47,7 @@ public class polarity_switch : MonoBehaviour
             //sp_render.sprite = image_SandN[0];
             obj_SorN[1].SetActive(false);
             obj_SorN[0].SetActive(true);
+            stsc.find_create_obj("eff_toS", "", this.transform.position, new Vector3(0.0f, 0.0f, 0.0f), "box");
         }
     }
 }
