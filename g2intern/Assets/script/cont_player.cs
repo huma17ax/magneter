@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using myfunc;
 
 public class cont_player : MonoBehaviour
 {
@@ -104,6 +105,8 @@ public class cont_player : MonoBehaviour
             b_conect = connected_block;
             vec_correct = v_correct;
             b_stand = !b_Stand;
+            stsc.find_create_obj("eff_conect", "", this.transform.position, new Vector3(0.0f, 0.0f, 0.0f), "box");
+            stsc.playSE(2);
         }
     }
 
