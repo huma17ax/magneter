@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using myfunc;
 
 public class goal_manager : MonoBehaviour
 {
@@ -23,7 +24,9 @@ public class goal_manager : MonoBehaviour
         {
             Debug.Log("goal");
             b_goal = true;
+
             clearPanel.SetActive(true);
+            stsc.playSE(3);
         }
 
     }
