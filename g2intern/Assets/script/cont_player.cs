@@ -15,6 +15,8 @@ public class cont_player : MonoBehaviour
     public GameObject[] obj_checkCircle = new GameObject[2];
     bool b_stand = true;
     Vector2 vec_correct = new Vector2(0.0f, 0.0f);
+    bool b_OnBox = false;
+    public GameObject arrow;
 
     void Start()
     {
@@ -27,10 +29,14 @@ public class cont_player : MonoBehaviour
         if (!b_conect)
         {
             //player_move();
+            arrow.SetActive(false);
+
         }
         else
         {
             conect_move();
+            arrow.SetActive(true);
+            setArrow();
         }
 
         if (b_conect && b_conect.tag == "N_pole")
@@ -116,6 +122,20 @@ public class cont_player : MonoBehaviour
             }
             b_conect = null;
             rbody.AddForce(vec_repulsion * POWER_REPULSION);
+        }
+    }
+
+    private void setArrow()
+    {
+        //最初の向きだったら
+        if (b_stand)
+        {
+            arrow.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        }
+        //反対の向きだったら
+        else
+        {
+            arrow.transform.localRotation = Quaternion.Euler(Vector3.forward * 180);
         }
     }
 
