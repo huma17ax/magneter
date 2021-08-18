@@ -5,7 +5,7 @@ using UnityEngine;
 public class goal_manager : MonoBehaviour
 {
     public bool b_goal = false;
-    
+    public GameObject clearPanel;   
     void Start()
     {
         
@@ -23,6 +23,7 @@ public class goal_manager : MonoBehaviour
         {
             Debug.Log("goal");
             b_goal = true;
+            clearPanel.SetActive(true);
         }
 
     }
