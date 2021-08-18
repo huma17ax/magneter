@@ -40,20 +40,28 @@ public class check_hit : MonoBehaviour
             {
                 return new Vector2(0.0f, 1.0f);
             }
-            else
+            else if(Mathf.Abs(pos_this.x - pos_hit.x) < scale_hit.x / 2.0f)
             {
                 return new Vector2(0.0f, 0.0f);
+            }
+            else if(pos_this.x - pos_hit.x > 0)
+            {
+                return new Vector2(0.5f, 0.6f);
+            }
+            else
+            {
+                return new Vector2(-0.5f, 0.6f);
             }
         }
         else
         {
             if(pos_this.x - pos_hit.x > 0)
             {
-                return new Vector2(0.5f, 0.5f);
+                return new Vector2(0.5f, 0.6f);
             }
             else
             {
-                return new Vector2(-0.5f, 0.5f);
+                return new Vector2(-0.5f, 0.6f);
             }
         }
         //else
